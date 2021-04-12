@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Given a singly linked list of integers l and an integer k,
  * remove all elements from list l that have a value equal to k.
@@ -17,8 +18,29 @@
  * }
  */
 
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
+function removeKFromList(listNumber, k) {
+  let head = listNumber;
+  let tail = null;
+  let current = listNumber;
+  let prev = null;
+  while (current != null) {
+    if (prev != null) {
+      if (current.value === k) {
+        prev.next = current.next;
+        if (current.next == null) {
+          tail = prev;
+        }
+      }
+    } else {
+      head = head.next;
+      if (head == null) {
+        tail = null;
+      }
+    }
+    prev = current;
+    current = current.next;
+  }
+  return head;
 }
 
 module.exports = removeKFromList;
