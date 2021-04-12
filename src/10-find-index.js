@@ -13,23 +13,15 @@
  */
 function findIndex(array, value) {
   let searchIndex;
-  let arrayLength = Math.floor(array.length / 2);
-  if (array[arrayLength] > value) {
-    for (let i = 0; i < arrayLength; i++) {
-      arrayLength = Math.floor(arrayLength / 2);
-      if (array[i] === value) {
-        searchIndex = i;
-      }
-    }
-  } else {
-    for (let i = arrayLength; i < array.length; i++) {
-      if (array[i] === value) {
-        searchIndex = i;
-      }
-    }
-  }
-  if (typeof searchIndex === 'number') {
-    return searchIndex;
+  let rightIndex = array.length - 1;
+  let leftIndex = 0;
+  while (leftIndex <= rightIndex) {
+    searchIndex = Math.floor((rightIndex + leftIndex) / 2);
+    if (array[searchIndex] < value) {
+      leftIndex = searchIndex + 1;
+    } else if (array[searchIndex] > value) {
+      rightIndex = searchIndex - 1;
+    } else return searchIndex;
   }
   return false;
 }
